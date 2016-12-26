@@ -44,7 +44,7 @@ function* Gen(start_time = Date.now(), step = 10000, count = 1000) {
     let text = gentext();
     let user = genuser(i);
 
-    yield new template(time, text, user);
+    yield new template(text, time, user);
 
     time += _.floor(Math.random() * step);
   }
