@@ -3,12 +3,12 @@
 const uuid = require('uuid/v1');
 const _ = require('lodash');
 
-let template = function(text, timestamp, user) {
+let template = function(text, timestamp, user_id) {
   return {
     id: uuid(),
     text,
     timestamp,
-    user
+    user_id
   };
 };
 
