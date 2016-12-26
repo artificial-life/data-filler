@@ -1,0 +1,22 @@
+{
+  "name": "data-filler",
+  "version": "1.0.0",
+  "description": "User and Post generator",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "just",
+    "test"
+  ],
+  "author": "SS",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.3",
+    "uuid": "^3.0.1"
+  }
+}
