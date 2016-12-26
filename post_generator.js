@@ -12,7 +12,28 @@ let template = function(text, timestamp, user_id) {
   };
 };
 
-let gentext = () => Math.random();
+let letters = "abcdefghijklmnopqrstuvwxyz";
+
+let namegen = (len) => {
+  let result = "";
+  for (let i = 0; i < len; i++) {
+    let index = _.floor(Math.random() * (letters.length));
+    result += letters[index];
+  }
+  return result;
+};
+
+let gentext = () => {
+
+  let result = [];
+
+  for (var i = 0; i < 10; i++) {
+    let part = namegen(_.floor(Math.random() * 10));
+    result.push(part);
+  }
+
+  return result.join(' ') + '!!!';
+}
 
 let genuser = (i) => i % 2;
 
