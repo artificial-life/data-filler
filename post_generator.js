@@ -24,11 +24,11 @@ let namegen = (len) => {
   return result;
 };
 
-let gentext = () => {
+let gentext = (length = 10) => {
 
   let result = [];
 
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < length; i++) {
     let part = namegen(_.floor(Math.random() * 10));
     result.push(part);
   }
@@ -47,6 +47,7 @@ class Gen {
     this.prosts_count = 1000;
     this.start_time = Date.now();
     this.time_step = 10000;
+    this.words_count = 10;
     this.users_count = 1000;
   }
   step(value) {
@@ -69,19 +70,22 @@ class Gen {
     this.groups_count = value;
     return this;
   }
-
-  *[Symbol.Iterator]() {
-    let time = this.start_time;
-    for (var i = 0; i < this.prosts_count; i++) {
-      let text = gentext();
-      let user = _.random(this.users_count);
-      let group = _.random(this.groups_count);
-
-      yield new template(text, time, user, group);
-
-      time += _.floor(Math.random() * this.time_step);
+  wordsCount(value) {
+      this.words_count = value;
+      return this;
     }
-  }
+    *[Symbol.iterator]() {
+      let time = this.start_time;
+      for (var i = 0; i < this.prosts_count; i++) {
+        let text = gentext(this.words_count);
+        let user = _.random(this.users_count);
+        let group = _.random(this.groups_count);
+
+        yield new template(text, time, user, group);
+
+        time += _.floor(Math.random() * this.time_step);
+      }
+    }
 }
 
 
