@@ -39,17 +39,7 @@ let gentext = () => {
 let genuser = (i) => i % 2;
 
 
-function* Gen(start_time = Date.now(), step = 10000, count = 1000) {
-  let time = start_time;
-  for (var i = 0; i < count; i++) {
-    let text = gentext();
-    let user = genuser(i);
 
-    yield new template(text, time, user);
-
-    time += _.floor(Math.random() * step);
-  }
-}
 
 class Gen {
   constructor() {
@@ -80,17 +70,19 @@ class Gen {
     return this;
   }
 
-  *[Symbol.Iterator] {
+  *[Symbol.Iterator]() {
     let time = this.start_time;
-    for (var i = 0; i < count; i++) {
+    for (var i = 0; i < this.prosts_count; i++) {
       let text = gentext();
       let user = _.random(this.users_count);
       let group = _.random(this.groups_count);
 
-      yield new template(text, time, user);
+      yield new template(text, time, user, group);
 
-      time += _.floor(Math.random() * step);
+      time += _.floor(Math.random() * this.time_step);
     }
   }
 }
+
+
 module.exports = Gen;
